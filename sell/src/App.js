@@ -6,7 +6,6 @@ import { AuthProvider } from './context/AuthContext';
 import { UserBusinessProvider } from './context/UserBusinessContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MobileNavBar from './components/MobileNavBar';
-import { Analytics } from '@vercel/analytics/react';
 
 // Pages
 import Login from './pages/Login';
@@ -54,7 +53,6 @@ function App() {
               <Route path="/auth/callback" element={<AuthCallback />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            <Analytics />
             {/* Barre de navigation mobile qui s'affiche uniquement sur le dashboard */}
             {window.location.pathname === '/dashboard' && <MobileNavBar />}
             <ToastContainer 
