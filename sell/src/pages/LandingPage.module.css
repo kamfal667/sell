@@ -1,0 +1,127 @@
+/* LandingPage.module.css */
+/* Style principal pour la landing page immersive */
+
+.landingPageContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Style pour les sections avec scroll snap */
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 64px max(24px, 5%);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Styles spécifiques pour chaque section */
+.heroSection {
+  min-height: calc(100vh - 64px); /* Tenir compte du header */
+  padding-top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,1) 100%);
+}
+
+.featuresSection {
+  background: linear-gradient(135deg, #121212 0%, #000 100%);
+}
+
+/* Conteneur du flow d'inventaire */
+.inventoryFlowContainer {
+  padding: 3rem 0;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.flowTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(90deg, #FF6B35, #FF8F65);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.pricingSection {
+  background: linear-gradient(135deg, #000 0%, #121212 100%);
+}
+
+.videoSection {
+  background: linear-gradient(135deg, #121212 0%, #000 100%);
+}
+
+.testimonialsSection {
+  background: linear-gradient(135deg, #000 0%, #121212 100%);
+}
+
+.faqSection {
+  background: linear-gradient(135deg, #121212 0%, #000 100%);
+}
+
+.footerSection {
+  min-height: auto;
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 1200px) {
+  .section {
+    padding: 56px max(20px, 4%);
+  }
+}
+
+@media (max-width: 992px) {
+  .landingPageContainer {
+    scroll-snap-type: y proximity; /* Moins strict pour les petits écrans */
+  }
+  
+  .section {
+    padding: 48px max(16px, 3%);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px max(16px, 3%);
+    min-height: auto; /* Permettre des sections plus courtes sur mobile */
+  }
+  
+  .heroSection {
+    min-height: 100vh; /* Garder le hero en plein écran */
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 32px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .section {
+    padding: 24px 12px;
+  }
+}
+
+/* Pour les grands écrans */
+@media (min-width: 1600px) {
+  .section {
+    padding: 80px max(24px, 8%);
+  }
+}

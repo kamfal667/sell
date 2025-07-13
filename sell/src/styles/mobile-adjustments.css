@@ -1,0 +1,65 @@
+/* Ajustements CSS pour les appareils mobiles */
+/* Ces styles n'affectent pas la version desktop */
+
+@media (max-width: 480px) {
+  /* Ajustement du padding pour le contenu principal */
+  .App {
+    padding-bottom: 60px; /* Espace pour la barre de navigation mobile */
+  }
+  
+  /* Ajustements généraux pour les conteneurs principaux */
+  [class*="mainContent"] {
+    padding: 1rem !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Ajustements pour les titres */
+  h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  /* Ajustements pour les cartes */
+  [class*="Card"] {
+    padding: 0.8rem !important;
+  }
+  
+  /* Ajustements pour les tableaux */
+  table {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Ajustements pour les boutons */
+  button {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Ajustements pour les formulaires */
+  input, select, textarea {
+    font-size: 1rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  /* Ajustements pour les modales */
+  [class*="Modal"] {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 1rem !important;
+  }
+}
+
+/* Ajustements pour les tablettes */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Ajustements pour les conteneurs principaux */
+  [class*="mainContent"] {
+    padding: 1.5rem !important;
+    margin-left: 60px !important; /* Pour la sidebar réduite */
+    width: calc(100% - 60px) !important;
+  }
+}

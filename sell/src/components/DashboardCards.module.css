@@ -1,0 +1,143 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.cardItem {
+  min-width: 0;
+}
+
+.noData {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dark .noData {
+  background: rgba(44, 62, 80, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.noData p {
+  color: #2C3E50;
+  font-size: 1.2rem;
+  margin: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dark .noData p {
+  color: #ecf0f1;
+}
+
+/* Styles pour la carte d'historique */
+.historyCard {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.darkCard {
+  background: rgba(44, 62, 80, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  color: #ecf0f1;
+}
+
+.historyCard h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #2C3E50;
+}
+
+.darkCard h3 {
+  color: #ecf0f1;
+}
+
+.historyCard .icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.recentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recentItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.darkCard .recentItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.recentItem:last-child {
+  border-bottom: none;
+}
+
+.recentName {
+  font-weight: 500;
+  flex: 1;
+}
+
+.recentDetails {
+  display: flex;
+  gap: 1rem;
+}
+
+.recentStock {
+  color: #16A085;
+  font-size: 0.9rem;
+}
+
+.darkCard .recentStock {
+  color: #2ecc71;
+}
+
+.recentPrice {
+  font-weight: 600;
+  color: #FF6B35;
+}
+
+.darkCard .recentPrice {
+  color: #ff9b76;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
