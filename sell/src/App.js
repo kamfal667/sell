@@ -53,8 +53,8 @@ function App() {
               <Route path="/auth/callback" element={<AuthCallback />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            {/* Barre de navigation mobile qui s'affiche uniquement sur les petits écrans */}
-            <MobileNavBar />
+            {/* Barre de navigation mobile qui s'affiche uniquement sur les petits écrans et pas sur la landing page */}
+            {window.location.pathname !== '/' && <MobileNavBar />}
             <ToastContainer 
               position="top-right"
               autoClose={5000}
