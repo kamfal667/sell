@@ -157,7 +157,8 @@ const Contact = () => {
               </div>
               <div className={styles.infoContent}>
                 <h3>Adresse</h3>
-                <p>123 Avenue de l'Innovation<br />Abidjan, Côte d'Ivoire</p>
+                <p>Riviera palmeraie</p>
+                <p>Abidjan, Côte d'Ivoire</p>
               </div>
             </div>
             
@@ -177,7 +178,7 @@ const Contact = () => {
               </div>
               <div className={styles.infoContent}>
                 <h3>Téléphone</h3>
-                <p>+225 07 XX XX XX XX</p>
+                <p>+225 0767568549 / 0140 78 78 45</p>
               </div>
             </div>
             

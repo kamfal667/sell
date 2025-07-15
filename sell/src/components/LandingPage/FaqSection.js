@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import styles from './FaqSection.module.css';
 
 /**
@@ -177,14 +178,14 @@ const FaqSection = () => {
         viewport={{ once: true }}
       >
         <p className={styles.ctaText}>Vous avez d'autres questions ?</p>
-        <motion.a 
-          href="#contact" 
-          className={styles.ctaButton}
+        <motion.div
           whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 107, 53, 0.7)" }}
           whileTap={{ scale: 0.95 }}
         >
-          Contactez-nous
-        </motion.a>
+          <Link to="/contact" className={styles.ctaButton}>
+            Contactez-nous
+          </Link>
+        </motion.div>
       </motion.div>
     </div>
   );
