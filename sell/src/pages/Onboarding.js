@@ -65,11 +65,6 @@ const Onboarding = () => {
           newErrors.telephone_boutique = 'Le téléphone de la boutique est obligatoire';
         }
         break;
-      case 4:
-        if (!formData.devise.trim()) {
-          newErrors.devise = 'La devise est obligatoire';
-        }
-        break;
       default:
         break;
     }
@@ -98,13 +93,13 @@ const Onboarding = () => {
     setLoading(true);
     
     try {
-      // Insert business config
+      // Insert business config with FCFA as default currency
       const { error } = await supabase.from('user_business_config').insert({
         user_id: user.id,
         nom_boutique: formData.nom_boutique,
         type_business: formData.type_business,
         telephone_boutique: formData.telephone_boutique,
-        devise: formData.devise,
+        devise: 'FCFA', // Devise FCFA par défaut
       });
       
       if (error) {
@@ -205,22 +200,6 @@ const Onboarding = () => {
             {errors.telephone_boutique && <p className={styles.error}>{errors.telephone_boutique}</p>}
           </div>
         );
-      case 4:
-        return (
-          <div className={styles.formGroup}>
-            <label htmlFor="devise" className={styles.formLabel}>Devise</label>
-            <input
-              type="text"
-              id="devise"
-              name="devise"
-              value={formData.devise}
-              onChange={handleChange}
-              className={styles.formInput}
-              disabled={loading}
-            />
-            {errors.devise && <p className={styles.error}>{errors.devise}</p>}
-          </div>
-        );
       default:
         return null;
     }
@@ -233,10 +212,10 @@ const Onboarding = () => {
         
         <h1 className={styles.formTitle}>Configuration de votre boutique</h1>
         <p style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          Étape {currentStep} sur 4
+          Étape {currentStep} sur 3
         </p>
         
-        <form onSubmit={currentStep === 4 ? handleSubmit : (e) => e.preventDefault()}>
+        <form onSubmit={currentStep === 3 ? handleSubmit : (e) => e.preventDefault()}>
           {renderStep()}
           
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
@@ -252,7 +231,7 @@ const Onboarding = () => {
               </button>
             )}
             
-            {currentStep < 4 ? (
+            {currentStep < 3 ? (
               <button 
                 type="button" 
                 onClick={handleNext}
