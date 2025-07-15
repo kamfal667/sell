@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import styles from './VideoSection.module.css';
 
 /**
@@ -151,13 +152,15 @@ const VideoSection = () => {
           variants={textVariants}
         >
           <p className={styles.ctaText}>Prêt à transformer votre gestion commerciale ?</p>
-          <motion.button 
-            className={styles.ctaButton}
-            whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 107, 53, 0.7)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Essayer gratuitement
-          </motion.button>
+          <Link to="/signup">
+            <motion.button 
+              className={styles.ctaButton}
+              whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 107, 53, 0.7)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Essayer gratuitement
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </motion.div>

@@ -185,7 +185,7 @@ const PricingSection = () => {
               ))}
             </ul>
             
-            <Link to={plan.id === 'enterprise' ? '/contact' : '/signup'} className={styles.ctaLink}>
+            <Link to={plan.id === 'enterprise' ? '/login' : '/signup'} className={styles.ctaLink}>
               <motion.button 
                 className={`${styles.ctaButton} ${plan.popular ? styles.popularButton : ''}`}
                 variants={buttonVariants}

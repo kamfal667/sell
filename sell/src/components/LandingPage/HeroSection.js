@@ -86,7 +86,7 @@ const HeroSection = ({ scrollY }) => {
         </motion.p>
       
         <div className={styles.heroButtons}>
-          <Link to="/signup">
+          <Link to="/auth">
             <motion.button 
               className={styles.primaryButton}
               initial="hidden"
@@ -100,17 +100,19 @@ const HeroSection = ({ scrollY }) => {
             </motion.button>
           </Link>
           
-          <motion.button 
-            className={styles.secondaryButton}
-            initial="hidden"
-            animate="visible"
-            whileHover="hover"
-            whileTap="tap"
-            variants={buttonVariants}
-            custom={1}
-          >
-            Voir la démo
-          </motion.button>
+          <Link to="/demo">
+            <motion.button 
+              className={styles.secondaryButton}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+              variants={buttonVariants}
+              custom={1}
+            >
+              Voir la démo
+            </motion.button>
+          </Link>
         </div>
       </div>
       
