@@ -69,12 +69,12 @@ const Signup = () => {
         return;
       }
       
-      // Attendre un peu pour s'assurer que la session est bien créée avant de rediriger
-      toast.success('Inscription réussie! Redirection vers la configuration de votre boutique...');
+      // Afficher un message de succès et rediriger vers la page de connexion
+      toast.success('Inscription réussie! Redirection vers la page de connexion...');
       
-      // Attendre que la session soit bien établie avant de rediriger
+      // Rediriger vers la page de connexion après un court délai
       setTimeout(() => {
-        navigate('/onboarding');
+        navigate('/login');
       }, 1000);
     } catch (error) {
       toast.error(`Une erreur est survenue: ${error.message}`);

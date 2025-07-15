@@ -113,7 +113,12 @@ const Onboarding = () => {
       }
       
       toast.success('Configuration enregistrée avec succès!');
-      navigate('/dashboard');
+      
+      // Forcer un court délai pour s'assurer que la redirection se produit après l'enregistrement
+      setTimeout(() => {
+        // Redirection forcée vers le dashboard
+        window.location.href = '/dashboard';
+      }, 1000);
     } catch (error) {
       toast.error(`Une erreur est survenue: ${error.message}`);
     } finally {
