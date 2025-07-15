@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './PricingSection.module.css';
@@ -8,6 +8,45 @@ import styles from './PricingSection.module.css';
  * Présente les différentes offres tarifaires avec effet glassmorphism
  */
 const PricingSection = () => {
+  // État pour suivre la périodicité sélectionnée (mensuel, trimestriel, annuel)
+  const [billingPeriod, setBillingPeriod] = useState('monthly');
+  
+  // Facteurs de réduction pour les différentes périodicités
+  const discountFactors = {
+    monthly: 1, // pas de réduction
+    quarterly: 0.9, // 10% de réduction
+    yearly: 0.8 // 20% de réduction
+  };
+  
+  // Textes pour les périodes
+  const periodTexts = {
+    monthly: 'par mois',
+    quarterly: 'par trimestre',
+    yearly: 'par an'
+  };
+  
+  // Calculer le prix en fonction de la périodicité et appliquer la réduction
+  const calculatePrice = (basePrice, period) => {
+    if (basePrice === '0') return basePrice; // Le plan gratuit reste gratuit
+    
+    const numericPrice = parseInt(basePrice.replace(/\s/g, ''), 10);
+    let adjustedPrice;
+    
+    switch(period) {
+      case 'quarterly':
+        adjustedPrice = Math.round(numericPrice * 3 * discountFactors.quarterly);
+        break;
+      case 'yearly':
+        adjustedPrice = Math.round(numericPrice * 12 * discountFactors.yearly);
+        break;
+      default: // monthly
+        adjustedPrice = numericPrice;
+    }
+    
+    // Formatter le prix avec des espaces pour les milliers
+    return adjustedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+  
   // Données des plans tarifaires
   const pricingPlans = [
     {
@@ -137,6 +176,38 @@ const PricingSection = () => {
         Choisissez le plan qui correspond à vos besoins
       </motion.p>
       
+      {/* Sélecteur de périodicité */}
+      <motion.div 
+        className={styles.billingSelector}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        viewport={{ once: true }}
+      >
+        <div className={styles.billingOptions}>
+          <button 
+            className={`${styles.billingOption} ${billingPeriod === 'monthly' ? styles.active : ''}`}
+            onClick={() => setBillingPeriod('monthly')}
+          >
+            Mensuel
+          </button>
+          <button 
+            className={`${styles.billingOption} ${billingPeriod === 'quarterly' ? styles.active : ''}`}
+            onClick={() => setBillingPeriod('quarterly')}
+          >
+            <span>Trimestriel</span>
+            <span className={styles.discount}>-10%</span>
+          </button>
+          <button 
+            className={`${styles.billingOption} ${billingPeriod === 'yearly' ? styles.active : ''}`}
+            onClick={() => setBillingPeriod('yearly')}
+          >
+            <span>Annuel</span>
+            <span className={styles.discount}>-20%</span>
+          </button>
+        </div>
+      </motion.div>
+      
       <motion.div 
         className={styles.pricingGrid}
         variants={containerVariants}
@@ -163,8 +234,8 @@ const PricingSection = () => {
             
             <div className={styles.planPrice}>
               <span className={styles.currency}>{plan.currency}</span>
-              <span className={styles.amount}>{plan.price}</span>
-              <span className={styles.period}>/{plan.period}</span>
+              <span className={styles.amount}>{calculatePrice(plan.price, billingPeriod)}</span>
+              <span className={styles.period}>/{plan.id === 'free' ? plan.period : periodTexts[billingPeriod]}</span>
             </div>
             
             <p className={styles.planDescription}>{plan.description}</p>
