@@ -100,7 +100,7 @@ const HeroSection = ({ scrollY }) => {
             </motion.button>
           </Link>
           
-          <Link to="/demo">
+          <a href="#video">
             <motion.button 
               className={styles.secondaryButton}
               initial="hidden"
@@ -112,7 +112,7 @@ const HeroSection = ({ scrollY }) => {
             >
               Voir la démo
             </motion.button>
-          </Link>
+          </a>
         </div>
       </div>
       

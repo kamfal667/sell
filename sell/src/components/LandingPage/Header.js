@@ -82,8 +82,8 @@ const Header = ({ activeSection = 0, onNavigate }) => {
             <li className={styles.navItem}>
               <a 
                 href="#features" 
-                className={`${styles.navLink} ${activeSection === 2 ? styles.active : ''}`}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(2); }}
+                className={`${styles.navLink} ${activeSection === 1 ? styles.active : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLinkClick(1); }}
               >
                 Fonctionnalités
               </a>
@@ -91,26 +91,26 @@ const Header = ({ activeSection = 0, onNavigate }) => {
             <li className={styles.navItem}>
               <a 
                 href="#pricing" 
-                className={`${styles.navLink} ${activeSection === 3 ? styles.active : ''}`}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(3); }}
+                className={`${styles.navLink} ${activeSection === 2 ? styles.active : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLinkClick(2); }}
               >
                 Tarifs
               </a>
             </li>
             <li className={styles.navItem}>
               <a 
-                href="#testimonials" 
-                className={`${styles.navLink} ${activeSection === 5 ? styles.active : ''}`}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(5); }}
+                href="#video" 
+                className={`${styles.navLink} ${activeSection === 3 ? styles.active : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLinkClick(3); }}
               >
-                Témoignages
+                Vidéo
               </a>
             </li>
             <li className={styles.navItem}>
               <a 
                 href="#faq" 
-                className={`${styles.navLink} ${activeSection === 6 ? styles.active : ''}`}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(6); }}
+                className={`${styles.navLink} ${activeSection === 4 ? styles.active : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLinkClick(4); }}
               >
                 FAQ
               </a>
@@ -168,8 +168,8 @@ const Header = ({ activeSection = 0, onNavigate }) => {
                 <motion.li variants={itemVariants} className={styles.mobileNavItem}>
                   <a 
                     href="#features" 
-                    className={`${styles.mobileNavLink} ${activeSection === 2 ? styles.active : ''}`}
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(2); }}
+                    className={`${styles.mobileNavLink} ${activeSection === 1 ? styles.active : ''}`}
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(1); }}
                   >
                     Fonctionnalités
                   </a>
@@ -177,26 +177,26 @@ const Header = ({ activeSection = 0, onNavigate }) => {
                 <motion.li variants={itemVariants} className={styles.mobileNavItem}>
                   <a 
                     href="#pricing" 
-                    className={`${styles.mobileNavLink} ${activeSection === 3 ? styles.active : ''}`}
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(3); }}
+                    className={`${styles.mobileNavLink} ${activeSection === 2 ? styles.active : ''}`}
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(2); }}
                   >
                     Tarifs
                   </a>
                 </motion.li>
                 <motion.li variants={itemVariants} className={styles.mobileNavItem}>
                   <a 
-                    href="#testimonials" 
-                    className={`${styles.mobileNavLink} ${activeSection === 5 ? styles.active : ''}`}
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(5); }}
+                    href="#video" 
+                    className={`${styles.mobileNavLink} ${activeSection === 3 ? styles.active : ''}`}
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(3); }}
                   >
-                    Témoignages
+                    Vidéo
                   </a>
                 </motion.li>
                 <motion.li variants={itemVariants} className={styles.mobileNavItem}>
                   <a 
                     href="#faq" 
-                    className={`${styles.mobileNavLink} ${activeSection === 6 ? styles.active : ''}`}
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(6); }}
+                    className={`${styles.mobileNavLink} ${activeSection === 4 ? styles.active : ''}`}
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(4); }}
                   >
                     FAQ
                   </a>
