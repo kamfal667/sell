@@ -22,6 +22,7 @@ import Settings from './pages/Settings';
 import ImageMigration from './pages/ImageMigration';
 import Inventaire from './pages/Inventaire';
 import LandingPage from './pages/LandingPage';
+import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
 
 // Styles
@@ -37,6 +38,7 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/onboarding" element={<Onboarding />} />

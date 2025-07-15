@@ -16,8 +16,9 @@ const Footer = () => {
     { name: 'Accueil', path: '#hero' },
     { name: 'Fonctionnalités', path: '#features' },
     { name: 'Tarifs', path: '#pricing' },
-    { name: 'Témoignages', path: '#testimonials' },
-    { name: 'FAQ', path: '#faq' }
+    { name: 'Vidéo', path: '#video' },
+    { name: 'FAQ', path: '#faq' },
+    { name: 'Contact', path: '/contact', isExternal: true }
   ];
   
   // Données des liens de ressources
@@ -135,9 +136,15 @@ const Footer = () => {
               <ul className={styles.linksList}>
                 {navLinks.map((link, index) => (
                   <li key={index} className={styles.linkItem}>
-                    <a href={link.path} className={styles.link}>
-                      {link.name}
-                    </a>
+                    {link.isExternal ? (
+                      <Link to={link.path} className={styles.link}>
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <a href={link.path} className={styles.link}>
+                        {link.name}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
