@@ -16,7 +16,7 @@ const Onboarding = () => {
   const [formData, setFormData] = useState({
     nom_boutique: '',
     type_business: 'E-commerce',
-    telephone_boutique: '',
+    telephone_boutique: '+225 ',
     devise: 'FCFA',
   });
   const [errors, setErrors] = useState({});
@@ -38,7 +38,27 @@ const Onboarding = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    
+    // Validation spéciale pour le champ téléphone
+    if (name === 'telephone_boutique') {
+      // Vérifier si la valeur commence par +225 et ne contient que des chiffres après
+      const prefix = '+225 ';
+      
+      // Si l'utilisateur essaie de supprimer le préfixe, on le maintient
+      if (!value.startsWith(prefix)) {
+        // Extraire uniquement les chiffres de la saisie
+        const digits = value.replace(/\D/g, '');
+        setFormData({ ...formData, [name]: prefix + digits });
+      } else {
+        // Extraire la partie après le préfixe
+        const afterPrefix = value.substring(prefix.length);
+        // Ne garder que les chiffres
+        const onlyDigits = afterPrefix.replace(/\D/g, '');
+        setFormData({ ...formData, [name]: prefix + onlyDigits });
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
     
     // Clear error when user types
     if (errors[name]) {
@@ -63,6 +83,16 @@ const Onboarding = () => {
       case 3:
         if (!formData.telephone_boutique.trim()) {
           newErrors.telephone_boutique = 'Le téléphone de la boutique est obligatoire';
+        } else {
+          // Vérifier que le numéro contient au moins 8 chiffres après le préfixe +225
+          const prefix = '+225 ';
+          const digitsAfterPrefix = formData.telephone_boutique
+            .substring(prefix.length)
+            .replace(/\D/g, '');
+          
+          if (digitsAfterPrefix.length < 8) {
+            newErrors.telephone_boutique = 'Le numéro doit contenir au moins 8 chiffres après +225';
+          }
         }
         break;
       default:
@@ -196,7 +226,9 @@ const Onboarding = () => {
               onChange={handleChange}
               className={styles.formInput}
               disabled={loading}
+              placeholder="+225 XXXXXXXX"
             />
+            <p className={styles.helpText} style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem' }}>Format: +225 suivi de votre numéro</p>
             {errors.telephone_boutique && <p className={styles.error}>{errors.telephone_boutique}</p>}
           </div>
         );
