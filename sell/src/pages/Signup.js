@@ -175,7 +175,7 @@ const Signup = () => {
         </form>
         
         <p style={{ marginTop: '1rem', textAlign: 'center' }}>
-          Déjà un compte? <Link to="/" className={styles.link}>Se connecter</Link>
+          Déjà un compte? <Link to="/login" className={styles.link}>Se connecter</Link>
         </p>
       </div>
     </div>
