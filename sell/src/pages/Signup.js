@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabaseClient';
 import styles from '../styles/common.module.css';
 import Loader from '../components/Loader';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    prenom: '',
-    nom: '',
     email: '',
     password: '',
   });
@@ -28,14 +28,6 @@ const Signup = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.prenom.trim()) {
-      newErrors.prenom = 'Le prénom est obligatoire';
-    }
-    
-    if (!formData.nom.trim()) {
-      newErrors.nom = 'Le nom est obligatoire';
-    }
     
     if (!formData.email.trim()) {
       newErrors.email = 'L\'email est obligatoire';
@@ -66,12 +58,6 @@ const Signup = () => {
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
-        options: {
-          data: {
-            prenom: formData.prenom,
-            nom: formData.nom,
-          },
-        },
       });
       
       if (error) {
@@ -97,6 +83,10 @@ const Signup = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <div className={`${styles.formContainer} ${styles.glassContainer}`}>
@@ -109,34 +99,6 @@ const Signup = () => {
         <h1 className={styles.formTitle}>Créer un compte</h1>
         
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="prenom" className={styles.formLabel}>Prénom</label>
-            <input
-              type="text"
-              id="prenom"
-              name="prenom"
-              value={formData.prenom}
-              onChange={handleChange}
-              className={styles.formInput}
-              disabled={loading}
-            />
-            {errors.prenom && <p className={styles.error}>{errors.prenom}</p>}
-          </div>
-          
-          <div className={styles.formGroup}>
-            <label htmlFor="nom" className={styles.formLabel}>Nom</label>
-            <input
-              type="text"
-              id="nom"
-              name="nom"
-              value={formData.nom}
-              onChange={handleChange}
-              className={styles.formInput}
-              disabled={loading}
-            />
-            {errors.nom && <p className={styles.error}>{errors.nom}</p>}
-          </div>
-          
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.formLabel}>Email</label>
             <input
@@ -153,15 +115,25 @@ const Signup = () => {
           
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.formLabel}>Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={styles.formInput}
-              disabled={loading}
-            />
+            <div className={styles.passwordInputContainer}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className={styles.formInput}
+                disabled={loading}
+              />
+              <button 
+                type="button" 
+                onClick={togglePasswordVisibility} 
+                className={styles.passwordToggle}
+                tabIndex="-1"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             {errors.password && <p className={styles.error}>{errors.password}</p>}
           </div>
           

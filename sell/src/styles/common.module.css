@@ -207,6 +207,52 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Password input container styles */
+.passwordInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInputContainer .formInput {
+  padding-right: 40px; /* Space for the toggle button */
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.passwordToggle:hover {
+  color: #FF6B35;
+}
+
+.passwordToggle:focus {
+  outline: none;
+  color: #FF6B35;
+}
+
+/* Dark mode styles for password toggle */
+:global(.dark) .passwordToggle {
+  color: #aaa;
+}
+
+:global(.dark) .passwordToggle:hover,
+:global(.dark) .passwordToggle:focus {
+  color: #FF6B35;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .glassContainer {
