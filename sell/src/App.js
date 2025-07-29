@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from './context/AuthContext';
 import { UserBusinessProvider } from './context/UserBusinessContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -69,6 +70,7 @@ function App() {
               pauseOnHover
               theme="light"
             />
+            <Analytics />
           </div>
           </Router>
         </ThemeProvider>
