@@ -4,7 +4,9 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { supabase, getImageUrl } from '../utils/supabaseClient';
-import Sidebar from '../components/Sidebar';
+import useIsMobile from '../hooks/useIsMobile';
+import MobileLayout from '../components/MobileLayout';
+import MobileProduitsView from '../components/MobileProduitsView';
 import Loader from '../components/Loader';
 import ProduitModal from '../components/ProduitModal';
 import styles from './Produits.module.css';
@@ -13,6 +15,7 @@ const Produits = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { theme } = useContext(ThemeContext);
+  const isMobile = useIsMobile();
   const [produits, setProduits] = useState([]);
   const [filteredProduits, setFilteredProduits] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -349,9 +352,40 @@ const Produits = () => {
     setStockFilter('tous');
   };
 
+  if (isMobile) {
+    return (
+      <MobileLayout>
+        {loading && <Loader />}
+        <MobileProduitsView
+          produits={filteredProduits}
+          onAddProduit={handleAddProduit}
+          onEditProduit={handleEditProduit}
+          onDeleteProduit={handleDeleteProduit}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          categorieFilter={categorieFilter}
+          setCategorieFilter={setCategorieFilter}
+          stockFilter={stockFilter}
+          setStockFilter={setStockFilter}
+          categories={categories}
+          onResetFilters={resetFilters}
+        />
+        {modalOpen && (
+          <ProduitModal
+            isOpen={modalOpen}
+            onClose={closeModal}
+            onSave={handleSaveProduit}
+            produit={editingProduit}
+            categories={categories}
+          />
+        )}
+      </MobileLayout>
+    );
+  }
+
   return (
     <div className={`${styles.produitsContainer} ${theme === 'dark' ? styles.dark : ''}`}>
-      <Sidebar />
+      <MobileLayout>
       
       <div className={styles.mainContent}>
         <div className={styles.header}>
@@ -577,6 +611,7 @@ const Produits = () => {
           categories={categories}
         />
       )}
+      </MobileLayout>
     </div>
   );
 };

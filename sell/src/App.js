@@ -56,8 +56,16 @@ function App() {
               <Route path="/auth/callback" element={<AuthCallback />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            {/* Barre de navigation mobile qui s'affiche uniquement sur le dashboard */}
-            {window.location.pathname === '/dashboard' && <MobileNavBar />}
+            {/* Barre de navigation mobile qui s'affiche sur toutes les pages du dashboard */}
+            {(window.location.pathname === '/dashboard' || 
+              window.location.pathname === '/produits' ||
+              window.location.pathname === '/ventes' ||
+              window.location.pathname === '/stats' ||
+              window.location.pathname === '/inventaire' ||
+              window.location.pathname === '/clients' ||
+              window.location.pathname === '/commandes' ||
+              window.location.pathname === '/categories' ||
+              window.location.pathname === '/parametres') && <MobileNavBar />}
             <ToastContainer 
               position="top-right"
               autoClose={5000}
